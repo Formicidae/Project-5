@@ -1,7 +1,7 @@
 #ifndef DOUBLELINKNODE_H
 #define DOUBLELINKNODE_H
 
-#include <BaseNode.h>
+#include "BaseNode.h"
 
 
 class DoubleLinkNode : public BaseNode
