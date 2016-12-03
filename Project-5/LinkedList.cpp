@@ -7,7 +7,9 @@ LinkedList::LinkedList()
     //ctor
 }
 
+/*
 LinkedList::~LinkedList()
 {
     //dtor
 }
+*/
