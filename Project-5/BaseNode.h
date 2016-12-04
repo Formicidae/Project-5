@@ -8,7 +8,7 @@ using namespace std;
 class BaseNode
 {
     public:
-        BaseNode(){};
+        BaseNode(){roman = ""; arabic = 0;};
         BaseNode(string r,int a) {roman = r; arabic = a;}
         BaseNode( const BaseNode &node){roman = node.roman;arabic = node.arabic;}
         string roman;

@@ -282,28 +282,108 @@ bool romInvalid(string str){
 //Sort Arabic
 void sortArabic(LinkedList l)
 {
-    bool swapped = false;
+    bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
 
-
-    while(!swapped){
+    cout << l.getTail()->roman << endl <<l.getTail()->arabic << endl<<endl;
+    while(swapped){
         swapped = false;
-        while(cur->next){
+        cur = l.getHead();
+        while(cur->next != nullptr){
             if(cur->arabic > cur->next->arabic){
-                DoubleLinkNode*hold = cur->next;
-                cur->next = cur->next->next;
-                hold->next = cur;
-                cur->prev->next = hold;
-                cur->next->prev = cur;
-                hold->prev = cur->prev;
-                cur->prev = hold;
-                swapped = true;
+                if(!cur->next->next){
+                    cout<<cur->arabic << endl;
+                    cout<< cur->roman << endl;
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = nullptr;
+                    hold->next = cur;
+                    cur->prev->next = hold;
+                    //cur->next->prev = hold->prev;
+                    hold->prev = cur->prev;
+                    cur->prev = hold;
+                    swapped = true;
+                    break;
+                }
+                else if(cur->prev){
+                    cout<<cur->arabic << endl;
+                    cout<< cur->roman << endl;
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = cur->next->next;
+                    hold->next = cur;
+                    cur->prev->next = hold;
+                    cur->next->prev = cur;
+                    hold->prev = cur->prev;
+                    cur->prev = hold;
+                    swapped = true;
+                }
+                else{
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = cur->next->next;
+                    hold->next = cur;
+                    cur->next->setPrev(cur);
+                    l.setHead(hold);
+                    swapped = true;
+
+                }
             }
             cur = cur->next;
         }
     }
 }
 
+void sortRoman(LinkedList l)
+{
+    bool swapped = true;
+    DoubleLinkNode* cur = l.getHead();
+
+    //cout << l.getTail()->roman << endl <<l.getTail()->arabic << endl<<endl;
+    while(swapped){
+        swapped = false;
+        cur = l.getHead();
+        while(cur->next != nullptr){
+            if(cur->roman > cur->next->roman){
+                if(!cur->next->next){
+                    cout<<cur->arabic << endl;
+                    cout<< cur->roman << endl;
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = nullptr;
+                    hold->next = cur;
+                    cur->prev->next = hold;
+                    //cur->next->prev = hold->prev;
+                    hold->prev = cur->prev;
+                    cur->prev = hold;
+                    swapped = true;
+                    break;
+                }
+                else if(cur->prev){
+                    cout<<cur->arabic << endl;
+                    cout<< cur->roman << endl;
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = cur->next->next;
+                    hold->next = cur;
+                    cur->prev->next = hold;
+                    cur->next->prev = cur;
+                    hold->prev = cur->prev;
+                    cur->prev = hold;
+                    swapped = true;
+                }
+                else{
+                    DoubleLinkNode*hold = cur->next;
+                    cur->next = cur->next->next;
+                    hold->next = cur;
+                    cur->next->setPrev(cur);
+                    l.setHead(hold);
+                    swapped = true;
+
+                }
+            }
+            cur = cur->next;
+        }
+    }
+}
+
+
+/*
 void sortRoman(LinkedList l)
 {
     bool swapped = false;
@@ -327,12 +407,7 @@ void sortRoman(LinkedList l)
         }
     }
 }
-
-
-
-
-
-
+*/
 //Binary search on list uses recursion
 bool binSearch(DoubleLinkNode*head,int length,int target){
     DoubleLinkNode*cur = head;
@@ -394,6 +469,7 @@ int main()
             newNode->setRoman(convertToRoman(i));
 
             llist += newNode;
+
             //EnQueue(head,convertToRoman(i), i);
         }
         else{
@@ -402,19 +478,19 @@ int main()
                 continue;
             }
             //If it is a roman numeral it is converted to arabic and added to the list
-
             DoubleLinkNode * newNode = new DoubleLinkNode;
             newNode->setArabic(convertToArabic(line.substr(0,16)));
             newNode->setRoman(line.substr(0,16));
 
             llist += newNode;
+
             //llist += new DoubleLinkNode(line.substr(0,16),convertToArabic(line.substr(0,16)));
             //EnQueue(head,line.substr(0,16), convertToArabic(line.substr(0,16)));
         }
 
     }
 
-
+    sortArabic(llist);
 
 
         //output to file

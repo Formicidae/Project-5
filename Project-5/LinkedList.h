@@ -7,13 +7,22 @@ class LinkedList
 {
     public:
         LinkedList();
-        LinkedList(DoubleLinkNode* h){head = h; tail = nullptr;}
+        LinkedList(DoubleLinkNode* h){head = h; tail = h;}
         DoubleLinkNode* getHead(){return head;}
         DoubleLinkNode* getTail(){return tail;}
         setHead(DoubleLinkNode* &h){head = h;}
         setTail(DoubleLinkNode* &t){tail = t;}
         print();
-        operator+=(DoubleLinkNode* n){tail->setNext(n);n->setPrev(tail);tail = n;n->setNext(nullptr);}
+        operator+=(DoubleLinkNode* n){
+            if(!getHead()){
+                setHead(n);
+                setTail(n);
+            }
+            else{
+            tail->setNext(n);
+            n->setPrev(tail);
+            tail = n;
+            n->setNext(nullptr);}}
         //prefix
         operator--();
         //postfix
