@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1480969877 source:d:\c and c++ programs\project-5\homework8\main.cpp
+	<iostream>
+	"Encrypt.h"
+	"Upper.h"
+
+1480969664 source:d:\c and c++ programs\project-5\homework8\encrypt.cpp
+	"Encrypt.h"
+	<fstream>
+
+1480968992 d:\c and c++ programs\project-5\homework8\encrypt.h
+	<fstream>
+	"FileFilter.h"
+
+1480969310 d:\c and c++ programs\project-5\homework8\filefilter.h
+	<fstream>
+
+1480969945 source:d:\c and c++ programs\project-5\homework8\upper.cpp
+	"Upper.h"
+	<fstream>
+	<ctype.h>
+
+1480969862 d:\c and c++ programs\project-5\homework8\upper.h
+	"FileFilter.h"
+

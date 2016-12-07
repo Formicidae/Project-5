@@ -322,8 +322,8 @@ void sortArabic(LinkedList l)
                     hold->next = cur;
                     cur->next->setPrev(cur);
                     l.setHead(hold);
+                    cur->prev = hold;
                     swapped = true;
-
                 }
             }
             cur = cur->next;
@@ -496,7 +496,7 @@ int main()
         //output to file
     file.close();
     //Opens file in output mode
-    ofstream fileO(fileName);
+    ofstream fileO("output.txt");
     DoubleLinkNode*ptr = llist.getHead();
     //Prints each node from list on a line into the file
     while(ptr != nullptr){
