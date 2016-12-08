@@ -11,9 +11,8 @@ class BaseNode
         BaseNode(){roman = ""; arabic = 0;};
         BaseNode(string r,int a) {roman = r; arabic = a;}
         BaseNode( const BaseNode &node){roman = node.roman;arabic = node.arabic;}
-        string roman;
-        int arabic;
-        getArabic(){return arabic;}
+
+        int getArabic(){return arabic;}
         string getRoman(){return roman;}
         void setArabic(int a){arabic = a;}
         void setRoman(string r){roman = r;}
@@ -21,8 +20,8 @@ class BaseNode
 
 
     protected:
-
-    private:
+        string roman;
+        int arabic;
 };
 
 #endif // BASENODE_H

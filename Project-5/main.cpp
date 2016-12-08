@@ -285,48 +285,52 @@ void sortArabic(LinkedList l)
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
 
-    cout << l.getTail()->roman << endl <<l.getTail()->arabic << endl<<endl;
+    cout << l.getTail()->getRoman() << endl <<l.getTail()->getArabic() << endl<<endl;
     while(swapped){
         swapped = false;
         cur = l.getHead();
-        while(cur->next != nullptr){
-            if(cur->arabic > cur->next->arabic){
-                if(!cur->next->next){
-                    cout<<cur->arabic << endl;
-                    cout<< cur->roman << endl;
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = nullptr;
-                    hold->next = cur;
-                    cur->prev->next = hold;
+        cout << "Upper loop  sfssfssgsgsgsgsgsg" << endl;
+        while(cur->getNext() != nullptr){
+            if(cur->getArabic() > cur->getNext()->getArabic()){
+                if(cur->getNext()->getNext() == nullptr){
+                    cout << "Tail";
+                    cout<<cur->getArabic() << endl;
+                    cout<< cur->getRoman() << endl;
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(nullptr);
+                    hold->setNext(cur);
+                    cur->getPrev()->setNext(hold);
                     //cur->next->prev = hold->prev;
-                    hold->prev = cur->prev;
-                    cur->prev = hold;
+                    hold->setPrev(cur->getPrev());
+                    cur->setPrev(hold);
                     swapped = true;
                     break;
                 }
-                else if(cur->prev){
-                    cout<<cur->arabic << endl;
-                    cout<< cur->roman << endl;
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = cur->next->next;
-                    hold->next = cur;
-                    cur->prev->next = hold;
-                    cur->next->prev = cur;
-                    hold->prev = cur->prev;
-                    cur->prev = hold;
+                else if(cur->getPrev()){
+                    cout << "Main";
+                    cout<<cur->getArabic() << endl;
+                    cout<< cur->getRoman() << endl;
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(cur->getNext()->getNext());
+                    hold->setNext(cur);
+                    cur->getPrev()->setNext(hold);
+                    cur->getNext()->setPrev(cur);
+                    hold->setPrev(cur->getPrev());
+                    cur->setPrev(hold);
                     swapped = true;
                 }
                 else{
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = cur->next->next;
-                    hold->next = cur;
-                    cur->next->setPrev(cur);
+                    cout << "\n                              Head --------------\n";
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(cur->getNext()->getNext());
+                    hold->setNext(cur);
+                    cur->getNext()->setPrev(cur);
                     l.setHead(hold);
-                    cur->prev = hold;
+                    cur->setPrev(hold);
                     swapped = true;
                 }
             }
-            cur = cur->next;
+            cur->setNext(cur->getNext());
         }
     }
 }
@@ -336,51 +340,62 @@ void sortRoman(LinkedList l)
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
 
-    //cout << l.getTail()->roman << endl <<l.getTail()->arabic << endl<<endl;
+    cout << l.getTail()->getRoman() << endl <<l.getTail()->getArabic() << endl<<endl;
     while(swapped){
         swapped = false;
         cur = l.getHead();
-        while(cur->next != nullptr){
-            if(cur->roman > cur->next->roman){
-                if(!cur->next->next){
-                    cout<<cur->arabic << endl;
-                    cout<< cur->roman << endl;
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = nullptr;
-                    hold->next = cur;
-                    cur->prev->next = hold;
+        cout << "Upper loop  sfssfssgsgsgsgsgsgljdljgjdfg" << endl;
+        while(cur->getNext() != nullptr){
+                cout << "Checking Roman\n\n\n\n";
+                cout << cur->getRoman() <<" > " << cur->getNext()->getRoman() << "?\n\n\n\n\n";
+            if(cur->getRoman() > cur->getNext()->getRoman()){
+                    cout << "asdasad";
+                if(cur->getNext()->getNext() == nullptr){
+                    cout << "Tail";
+                    cout<<cur->getArabic() << endl;
+                    cout<< cur->getRoman() << endl;
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(nullptr);
+                    hold->setNext(cur);
+                    cur->getPrev()->setNext(hold);
                     //cur->next->prev = hold->prev;
-                    hold->prev = cur->prev;
-                    cur->prev = hold;
-                    swapped = true;
-                    break;
+                    hold->setPrev(cur->getPrev());
+                    cur->setPrev(hold);
+                    swapped = false;
+                    //break;
                 }
-                else if(cur->prev){
-                    cout<<cur->arabic << endl;
-                    cout<< cur->roman << endl;
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = cur->next->next;
-                    hold->next = cur;
-                    cur->prev->next = hold;
-                    cur->next->prev = cur;
-                    hold->prev = cur->prev;
-                    cur->prev = hold;
+                else if(cur->getPrev()){
+                    cout << "Main";
+                    cout<<cur->getArabic() << endl;
+                    cout<< cur->getRoman() << endl;
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(cur->getNext()->getNext());
+                    hold->setNext(cur);
+                    cur->getPrev()->setNext(hold);
+                    cur->getNext()->setPrev(cur);
+                    hold->setPrev(cur->getPrev());
+                    cur->setPrev(hold);
                     swapped = true;
                 }
                 else{
-                    DoubleLinkNode*hold = cur->next;
-                    cur->next = cur->next->next;
-                    hold->next = cur;
-                    cur->next->setPrev(cur);
+                    cout << "\n                              Head --------------\n";
+                    DoubleLinkNode*hold = cur->getNext();
+                    cur->setNext(cur->getNext()->getNext());
+                    hold->setNext(cur);
+                    cur->getNext()->setPrev(cur);
                     l.setHead(hold);
+                    cur->setPrev(hold);
                     swapped = true;
-
                 }
             }
-            cur = cur->next;
+            cout << "Next";
+            cur = cur->getNext();
         }
+        cout << "sdgdfgdgd";
     }
+    cout << "sfsfd";
 }
+
 
 
 /*
@@ -413,28 +428,28 @@ bool binSearch(DoubleLinkNode*head,int length,int target){
     DoubleLinkNode*cur = head;
     int count = 0;
     //Goes to middle of list
-    while(cur->next && count < (length / 2)){
+    while(cur->getNext() && count < (length / 2)){
         count++;
-        cur = cur->next;
+        cur->setNext(cur->getNext());
     }
             //If only 1 value remains it is checked, base case
             if(length == 1){
-                if(cur->arabic == target){
+                if(cur->getArabic() == target){
                     return true;
                 }
                 return false;
             }
 
             //If value is found true is returned and it stops searching
-            if(cur->arabic == target){
+            if(cur->getArabic() == target){
                 return true;
             }
             //If the middle value is greater than what is being searched for, the search is called recursively on the first half of the list
-            else if(cur->arabic > target){
+            else if(cur->getArabic() > target){
                 return binSearch(head, length / 2, target );
             }
             //If the middle value is less than what is being searched for, the search is called recursively on the second half of the list
-            else if(cur->arabic < target){
+            else if(cur->getArabic() < target){
                 return binSearch(cur,(length / 2) + 1,target);
             }
 }
@@ -500,12 +515,12 @@ int main()
     DoubleLinkNode*ptr = llist.getHead();
     //Prints each node from list on a line into the file
     while(ptr != nullptr){
-        fileO << ptr->roman;
-        for(int i = 0; i + ptr->roman.length() < 20;i++){
+        fileO << ptr->getRoman();
+        for(int i = 0; i + ptr->getRoman().length() < 20;i++){
             fileO << " ";
         }
-        fileO << ptr->arabic << endl;
-        ptr = ptr->next;
+        fileO << ptr->getArabic() << endl;
+        ptr = ptr->getNext();
     }
     return 0;
 }

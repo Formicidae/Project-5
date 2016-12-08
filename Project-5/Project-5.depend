@@ -20,3 +20,24 @@
 	"DoubleLinkNode.h"
 	"LinkedList.h"
 
+1480953882 source:c:\users\eddie\documents\github\project-5\project-5\linkedlist.cpp
+	"LinkedList.h"
+
+1480953882 c:\users\eddie\documents\github\project-5\project-5\linkedlist.h
+	"DoubleLinkNode.h"
+
+1481156585 c:\users\eddie\documents\github\project-5\project-5\doublelinknode.h
+	"BaseNode.h"
+
+1481156460 c:\users\eddie\documents\github\project-5\project-5\basenode.h
+	<string>
+
+1481160432 source:c:\users\eddie\documents\github\project-5\project-5\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<sstream>
+	<cstring>
+	"DoubleLinkNode.h"
+	"LinkedList.h"
+
