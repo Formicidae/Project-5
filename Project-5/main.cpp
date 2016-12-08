@@ -280,7 +280,7 @@ bool romInvalid(string str){
 }
 
 //Sort Arabic
-void sortArabic(LinkedList l)
+LinkedList sortArabic(LinkedList l)
 {
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
@@ -330,12 +330,13 @@ void sortArabic(LinkedList l)
                     swapped = true;
                 }
             }
-            cur->setNext(cur->getNext());
+            cur = cur->getNext();
         }
     }
+    return l;
 }
 
-void sortRoman(LinkedList l)
+LinkedList sortRoman(LinkedList l)
 {
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
@@ -344,7 +345,7 @@ void sortRoman(LinkedList l)
     while(swapped){
         swapped = false;
         cur = l.getHead();
-        cout << "Upper loop  sfssfssgsgsgsgsgsgljdljgjdfg" << endl;
+        cout << "Upper loop  jhssrfhosfssfssgsgsgsgsgsgljdljgjdfg" << endl;
         while(cur->getNext() != nullptr){
                 cout << "Checking Roman\n\n\n\n";
                 cout << cur->getRoman() <<" > " << cur->getNext()->getRoman() << "?\n\n\n\n\n";
@@ -361,8 +362,8 @@ void sortRoman(LinkedList l)
                     //cur->next->prev = hold->prev;
                     hold->setPrev(cur->getPrev());
                     cur->setPrev(hold);
-                    swapped = false;
-                    //break;
+                    swapped = true;
+                    break;
                 }
                 else if(cur->getPrev()){
                     cout << "Main";
@@ -394,6 +395,7 @@ void sortRoman(LinkedList l)
         cout << "sdgdfgdgd";
     }
     cout << "sfsfd";
+    return l;
 }
 
 
@@ -505,7 +507,7 @@ int main()
 
     }
 
-    sortArabic(llist);
+    llist = sortRoman(llist);
 
 
         //output to file
