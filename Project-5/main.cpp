@@ -303,6 +303,7 @@ LinkedList sortArabic(LinkedList l)
                     //cur->next->prev = hold->prev;
                     hold->setPrev(cur->getPrev());
                     cur->setPrev(hold);
+                    l.setTail(cur);
                     swapped = true;
                     break;
                 }
@@ -362,6 +363,7 @@ LinkedList sortRoman(LinkedList l)
                     //cur->next->prev = hold->prev;
                     hold->setPrev(cur->getPrev());
                     cur->setPrev(hold);
+                    l.setTail(cur);
                     swapped = true;
                     break;
                 }
@@ -427,6 +429,7 @@ void sortRoman(LinkedList l)
 */
 //Binary search on list uses recursion
 bool binSearch(DoubleLinkNode*head,int length,int target){
+    //cout << "Bin searching";
     DoubleLinkNode*cur = head;
     int count = 0;
     //Goes to middle of list
@@ -448,10 +451,13 @@ bool binSearch(DoubleLinkNode*head,int length,int target){
             }
             //If the middle value is greater than what is being searched for, the search is called recursively on the first half of the list
             else if(cur->getArabic() > target){
+                    cout << "middle great\n";
                 return binSearch(head, length / 2, target );
             }
             //If the middle value is less than what is being searched for, the search is called recursively on the second half of the list
             else if(cur->getArabic() < target){
+                cout << "Middle less\n" "Length " << length << " \n" << cur->getArabic() << "\n";
+
                 return binSearch(cur,(length / 2) + 1,target);
             }
 }
@@ -507,7 +513,26 @@ int main()
 
     }
 
-    llist = sortRoman(llist);
+    llist = sortArabic(llist);
+
+    //llist.getTail()->setNext(nullptr);
+
+    cout << "Sort Done";
+/*
+    DoubleLinkNode * cur = llist.getHead();
+    int length;
+    while(cur->getNext() != nullptr){
+        length++;
+        cout << "While";
+        cur = cur->getNext();
+    }
+    if(binSearch(llist.getHead(),length,27))
+        cout << "True";
+    else
+        cout << "False";
+        */
+
+
 
 
         //output to file
