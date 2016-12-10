@@ -1,17 +1,18 @@
 # depslib dependency file v1.0
-1480803925 source:d:\c and c++ programs\project-5\project-5\linkedlist.cpp
+1481411009 source:d:\c and c++ programs\project-5\project-5\linkedlist.cpp
 	"LinkedList.h"
+	<fstream>
 
-1480819539 d:\c and c++ programs\project-5\project-5\linkedlist.h
+1481411009 d:\c and c++ programs\project-5\project-5\linkedlist.h
 	"DoubleLinkNode.h"
 
-1480818807 d:\c and c++ programs\project-5\project-5\doublelinknode.h
+1481408607 d:\c and c++ programs\project-5\project-5\doublelinknode.h
 	"BaseNode.h"
 
-1480812219 d:\c and c++ programs\project-5\project-5\basenode.h
+1481409534 d:\c and c++ programs\project-5\project-5\basenode.h
 	<string>
 
-1480879548 source:d:\c and c++ programs\project-5\project-5\main.cpp
+1481411081 source:d:\c and c++ programs\project-5\project-5\main.cpp
 	<iostream>
 	<fstream>
 	<string>
@@ -40,4 +41,11 @@
 	<cstring>
 	"DoubleLinkNode.h"
 	"LinkedList.h"
+
+1481409780 source:d:\c and c++ programs\project-5\project-5\basenode.cpp
+	"BaseNode.h"
+	<string>
+	<fstream>
+	<sstream>
+	<ctype.h>
 

@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="BaseNode.cpp" />
 		<Unit filename="BaseNode.h" />
 		<Unit filename="DoubleLinkNode.h" />
 		<Unit filename="LinkedList.cpp" />

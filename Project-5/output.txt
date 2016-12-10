@@ -1,8 +1,11 @@
+I                   1
 II                  2
 XXVII               27
 XXVII               27
+XXVIII              28
 LVI                 56
 CXXIII              123
+DCLXVI              666
 MC                  1100
 MCIV                1104
 MCLXV               1165
@@ -11,3 +14,4 @@ MCMLXXV             1975
 MMMCDXXXII          3432
 MMMCDLII            3452
 MMMCDLII            3452
+MMMMCDXLIV          4444

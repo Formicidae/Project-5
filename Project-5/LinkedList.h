@@ -12,7 +12,7 @@ class LinkedList
         DoubleLinkNode* getTail(){return tail;}
         setHead(DoubleLinkNode* &h){head = h;}
         setTail(DoubleLinkNode* &t){tail = t;}
-        print();
+        void print(ofstream & out,DoubleLinkNode*head);
         operator+=(DoubleLinkNode* n){
             if(!getHead()){
                 setHead(n);
@@ -27,6 +27,8 @@ class LinkedList
         operator--();
         //postfix
         operator--(int);
+        void deleteL(DoubleLinkNode*headd);
+        ~LinkedList();
 
 
 
