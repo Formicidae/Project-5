@@ -10,6 +10,11 @@ LinkedList::LinkedList()
 }
 
 LinkedList::operator--(){
+    if(head == tail){
+        head->setRoman("");
+        head->setArabic(0);
+        return 0;
+    }
     DoubleLinkNode*hold = head;
     head = hold->getNext();
     head->setPrev(nullptr);
@@ -18,6 +23,11 @@ LinkedList::operator--(){
 }
 
 LinkedList::operator--(int){
+    if(head == tail){
+        head->setRoman("");
+        head->setArabic(0);
+        return 0;
+    }
     DoubleLinkNode*hold = tail;
     tail = hold->getPrev();
     tail->setNext(nullptr);
@@ -42,7 +52,6 @@ LinkedList::~LinkedList()
 
 void LinkedList::deleteL(DoubleLinkNode*headd){
     if(headd==tail){
-        std:cout << "deleting head";
         delete headd;
         return;
     }

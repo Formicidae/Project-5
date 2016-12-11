@@ -1,3 +1,5 @@
+//DELETE ANY NODE
+//Edward Bates emb160030 1337.002 project 5
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -139,7 +141,7 @@ bool decInvalid(string str){
     int i;
     myStream >> i;
     //Checks if input is in the right range, also checks the conversion worked
-    if(i > 0 && i < 4999){
+    if(i > 0 && i < 5000){
         return false;
     }
     return true;
@@ -224,7 +226,7 @@ bool romInvalid(string str){
                 if(str[j] == 'M' && j > i+1){
                     return true;
                 }
-                if(str[j] == 'C' && j > i+2){
+                if(str[j] == 'C' && j > i+6){
                     return true;
                 }
             }
@@ -247,7 +249,7 @@ bool romInvalid(string str){
             for(int j = i+1;j < str.length();j++){
                 if(str[j] != 'I' && str[j] != 'V' && str[j] != 'X'&& str[j] != 'C'&& str[j] != 'L'&& str[j] != 'D' && str[j] != 'M' && str[j] != ' ')
                     return true;
-                if(str[j] == 'M' && j > i+3){
+                if(str[j] == 'M' && j > i+8){
                     return true;
                 }
             }
@@ -280,25 +282,24 @@ bool romInvalid(string str){
 }
 
 //Sort Arabic
-LinkedList sortArabic(LinkedList l)
+void sortArabic(LinkedList& l)
 {
+    //Checks if there is only 1 element
+    if(l.getHead() == l.getTail()){
+        return;
+    }
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
-    cout << cur->getArabic() << "\n\n";
 
-    //cout << l.getTail()->getRoman() << endl <<l.getTail()->getArabic() << endl<<endl;
+    //Sorts list until nothing gets moved
     while(swapped){
         swapped = false;
         cur = l.getHead();
-        cout << "Upper loop  sfssfssgsgsgsgsgsg" << endl;
+        //Loops though list looking for things to swap
         while(cur->getNext() != nullptr){
-            cout << "Inner while ASort\n";
-            cout << cur->getArabic() << " > " << cur->getNext()->getArabic();
             if(cur->getArabic() > cur->getNext()->getArabic()){
+                //Special case for Tail
                 if(cur->getNext()->getNext() == nullptr){
-                    cout << "Tail";
-                    cout<<cur->getArabic() << endl;
-                    cout<< cur->getRoman() << endl;
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(nullptr);
                     hold->setNext(cur);
@@ -310,10 +311,8 @@ LinkedList sortArabic(LinkedList l)
                     swapped = true;
                     break;
                 }
+                //Main case for all the elements in th middle
                 else if(cur != l.getHead()){
-                    cout << "Main";
-                    //cout<<cur->getArabic() << endl;
-                    //cout<< cur->getRoman() << endl;
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(cur->getNext()->getNext());
                     hold->setNext(cur);
@@ -323,9 +322,8 @@ LinkedList sortArabic(LinkedList l)
                     cur->setPrev(hold);
                     swapped = true;
                 }
+                //Special case for Head of list
                 else{
-
-                    cout << "\n                              Head --------------\n";
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(cur->getNext()->getNext());
                     hold->setNext(cur);
@@ -335,40 +333,26 @@ LinkedList sortArabic(LinkedList l)
                     swapped = true;
                 }
             }
-            else{
-                cout <<"False";
-                cout << cur->getNext()->getRoman();
-            }
             cur = cur->getNext();
         }
     }
-    return l;
 }
 
-LinkedList sortRoman(LinkedList l)
+//Same as Arabic sort but alphabetically by Roman
+void sortRoman(LinkedList & l)
 {
     bool swapped = true;
     DoubleLinkNode* cur = l.getHead();
-
-    cout << l.getTail()->getRoman() << endl <<l.getTail()->getArabic() << endl<<endl;
     while(swapped){
         swapped = false;
         cur = l.getHead();
-        cout << "Upper loop  jhssrfhosfssfssgsgsgsgsgsgljdljgjdfg" << endl;
         while(cur->getNext() != nullptr){
-                cout << "Checking Roman\n\n\n\n";
-                cout << cur->getRoman() <<" > " << cur->getNext()->getRoman() << "?\n\n\n\n\n";
             if(cur->getRoman() > cur->getNext()->getRoman()){
-                    cout << "asdasad";
                 if(cur->getNext()->getNext() == nullptr){
-                    cout << "Tail";
-                    cout<<cur->getArabic() << endl;
-                    cout<< cur->getRoman() << endl;
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(nullptr);
                     hold->setNext(cur);
                     cur->getPrev()->setNext(hold);
-                    //cur->next->prev = hold->prev;
                     hold->setPrev(cur->getPrev());
                     cur->setPrev(hold);
                     l.setTail(cur);
@@ -376,9 +360,6 @@ LinkedList sortRoman(LinkedList l)
                     break;
                 }
                 else if(cur->getPrev()){
-                    cout << "Main";
-                    cout<<cur->getArabic() << endl;
-                    cout<< cur->getRoman() << endl;
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(cur->getNext()->getNext());
                     hold->setNext(cur);
@@ -389,7 +370,6 @@ LinkedList sortRoman(LinkedList l)
                     swapped = true;
                 }
                 else{
-                    cout << "\n                              Head --------------\n";
                     DoubleLinkNode*hold = cur->getNext();
                     cur->setNext(cur->getNext()->getNext());
                     hold->setNext(cur);
@@ -399,86 +379,56 @@ LinkedList sortRoman(LinkedList l)
                     swapped = true;
                 }
             }
-            cout << "Next";
             cur = cur->getNext();
         }
-        cout << "sdgdfgdgd";
-    }
-    cout << "sfsfd";
-    return l;
-}
-
-
-
-/*
-void sortRoman(LinkedList l)
-{
-    bool swapped = false;
-    DoubleLinkNode* cur = l.getHead();
-
-
-    while(!swapped){
-        swapped = false;
-        while(cur->next){
-            if(cur->roman > cur->next->roman){
-                DoubleLinkNode*hold = cur->next;
-                cur->next = cur->next->next;
-                hold->next = cur;
-                cur->prev->next = hold;
-                cur->next->prev = cur;
-                hold->prev = cur->prev;
-                cur->prev = hold;
-                swapped = true;
-            }
-            cur = cur->next;
-        }
     }
 }
-*/
+
 //Binary search on list uses recursion
-bool binSearch(DoubleLinkNode*head,int length,int target){
-    //cout << "Bin searching";
+bool binSearch(DoubleLinkNode*head,int length,int target)
+{
     DoubleLinkNode*cur = head;
     int count = 0;
     //Goes to middle of list
-    while(cur->getNext() && count < (length / 2)){
+    while(cur->getNext() && count < (length / 2))
+    {
         count++;
         cur = (cur->getNext());
     }
-            //If only 1 value remains it is checked, base case
-            if(length == 1){
-                if(cur->getArabic() == target){
-                    return true;
-                }
-                return false;
-            }
-
-            //If value is found true is returned and it stops searching
-            if(cur->getArabic() == target){
-                return true;
-            }
-            //If the middle value is greater than what is being searched for, the search is called recursively on the first half of the list
-            else if(cur->getArabic() > target){
-                    cout << "middle great\n";
-                return binSearch(head, length / 2, target );
-            }
-            //If the middle value is less than what is being searched for, the search is called recursively on the second half of the list
-            else if(cur->getArabic() < target){
-                cout << "Middle less\n" "Length " << length << " \n" << cur->getArabic() << "\n";
-
-                return binSearch(cur,(length / 2) + 1,target);
-            }
+    //If only 1 value remains it is checked, base case
+    if(length == 1)
+    {
+        if(cur->getArabic() == target)
+        {
+            return true;
+        }
+        return false;
+    }
+    //If value is found true is returned and it stops searching
+    if(cur->getArabic() == target)
+    {
+        return true;
+    }
+    //If the middle value is greater than what is being searched for, the search is called recursively on the first half of the list
+    else if(cur->getArabic() > target)
+    {
+        return binSearch(head, length / 2, target );
+    }
+    //If the middle value is less than what is being searched for, the search is called recursively on the second half of the list
+    else if(cur->getArabic() < target)
+    {
+        return binSearch(cur,(length / 2) + 1,target);
+    }
 }
-
 
 int main()
 {
+    //Opens file in read mode
     string fileName = "numbers.txt";
     ifstream file(fileName);
     string line;
     int i;
     LinkedList llist;
-
 
     //Reads each line of file
     while(file.good())
@@ -514,9 +464,6 @@ int main()
             newNode->setRoman(line.substr(0,16));
 
             llist += newNode;
-
-            //llist += new DoubleLinkNode(line.substr(0,16),convertToArabic(line.substr(0,16)));
-            //EnQueue(head,line.substr(0,16), convertToArabic(line.substr(0,16)));
         }
 
     }
@@ -526,18 +473,20 @@ int main()
     string target;
     bool stage1 = true;
     while(stage1){
-        cout << "\t1\tSearch" << endl;
+        cout << "\n\t1\tSearch" << endl;
         cout << "\t2\tAdd" << endl;
         cout << "\t3\tDelete First" << endl;
         cout << "\t4\tDelete last" << endl;
-        cout << "\t5\tExit" << endl;
+        cout << "\t5\tDelete any node" << endl;
+        cout << "\t6\tExit\n" << endl;
         choice = 0;
 
         string input;
 
+        //Checks if input is valid and converts it to int
         cin >> input;
         if(input.length() > 1){
-            choice = 6;
+            choice = 7;
         }
         else{
             stringstream i(input);
@@ -545,15 +494,36 @@ int main()
         }
 
         switch(choice){
-            case 1:
-                llist = sortArabic(llist);
+            case 1:{
+                sortArabic(llist);
                 cout << "What would you like to search for" << endl;
                 cin >> target;
+                //Checks if there is only 1 element
+                if(llist.getHead() == llist.getTail()){
+                    stringstream myStream(target);
+                    int i;
+                    myStream >> i;
+                    if(i == llist.getHead()->getArabic()){
+                        cout << endl << target << " Was found";
+                        break;
+                    }
+                    else{
+                        cout << endl << target << " Wasn't found";
+                        break;
+                    }
+                }
 
-                cout << target;
+                stringstream myStream(target);
+                int p;
+                myStream >> p;
+                if(llist.getTail()->getArabic() < p){
+                    cout << endl << target << " Wasn't found";
+                    break;
+                }
+
+                //If its a roman its converted to arbic for searching
                 if(!romInvalid(target)){
                     cout << "";
-                    cout << "adasd";
 
                     i = convertToArabic(target);
 
@@ -564,9 +534,7 @@ int main()
                         count++;
                         countP = (countP->getNext());
                     }
-                    cout << "SearchingR";
                     //Runs binary search
-                    cout << "Looking for: " + i;
                     if(binSearch(llist.getHead(),count,i)){
                         cout << endl << target << " Was found";
                     }
@@ -575,10 +543,8 @@ int main()
                     }
                     break;
                 }
-                            //If the target is in arabic
+                //If the target is in arabic
                 if(!decInvalid(target)){
-                    //Don't remove
-                    cout << "dec";
                     cout << "";
 
                     //Convert into an int for the search
@@ -591,12 +557,9 @@ int main()
                     int count = 1;
                     while(countP != nullptr){
                         count++;
-                        cout << count << "\n";
                         countP = countP->getNext();
                     }
                     //Runs binary search
-                    cout << "SearchingA: \n";
-                    cout << "Looking for: " << i;
                     if(binSearch(llist.getHead(),count,i)){
                         cout << endl << i << " Was found";
                     }
@@ -608,10 +571,13 @@ int main()
                     cout << "Invalid Input" << endl;
                 }
                 break;
+            }
             case 2:{
+                //adds a new node using the overloaded >> of BaseNode
                 cout << "What would you like to add?";
                 DoubleLinkNode*add = new DoubleLinkNode();
                 cin >> add;
+                //Adds node with overloaded +=
                 llist += add;
                 if(add->getRoman() != ""){
                     add->setArabic(convertToArabic(add->getRoman()));
@@ -619,21 +585,81 @@ int main()
                 else{
                     add->setRoman(convertToRoman(add->getArabic()));
                 }
+                sortArabic(llist);
                 break;
                 }
             case 3:{
-                llist = sortArabic(llist);
-                cout<< llist.getHead()->getRoman();
+                //Delete from begining of list
+                sortArabic(llist);
                 --llist;
-                cout<< llist.getHead()->getRoman();
                 break;
             }
             case 4:{
-                llist = sortArabic(llist);
+                //Delete from end of list
+                sortArabic(llist);
                 llist--;
                 break;
             }
             case 5:{
+                //Extra credit delete anywhere
+                cout << "What do you want to delete?";
+                cin >> target;
+                int t;
+                bool found = false;
+                cout << "";
+                //Figures out what type it is and converts to int
+                if(!romInvalid(target)){
+                    t = convertToArabic(target);
+                }
+                else if(!decInvalid(target)){
+                    //Convert into an int
+                    stringstream myStream(target);
+                    myStream >>t;
+                }
+
+                DoubleLinkNode*cur = llist.getHead();
+                //Loops though to find node to delete
+                while(cur != nullptr){
+                    //If the list only has one element it makes it a null node
+                    if(cur->getArabic() == t){
+                        if(llist.getHead() == llist.getTail()){
+                            llist.getHead()->setRoman("");
+                            llist.getHead()->setArabic(0);
+                            found = true;
+                            break;
+                        }
+
+                        //If the desired value is the head it uses prefix
+                        if(cur == llist.getHead()){
+                            cout << target << "\nHas been deleted\n";
+                            --llist;
+                            found = true;
+                            break;
+                        }
+                        //If the desired value is the Tail it uses postfix
+                        if(cur == llist.getTail()){
+                            cout << target << "\nHas been deleted\n";
+                            llist--;
+                            found = true;
+                            break;
+                        }
+                        cur->getPrev()->setNext(cur->getNext());
+                        cur->getNext()->setPrev(cur->getPrev());
+                        delete cur;
+
+                        cout << target << "\nHas been deleted\n";
+                        found = true;
+                        break;
+                    }
+                    cur = cur->getNext();
+                }
+                if(!found){
+                    cout << "Value wasn't found\n";
+                }
+                break;
+            }
+
+            case 6:{
                 stage1 = false;
                 break;
             }
@@ -641,65 +667,17 @@ int main()
         }
     }
 
+    sortArabic(llist);
 
-
-
-
-    llist = sortArabic(llist);
-
-    //llist.getTail()->setNext(nullptr);
-
-    cout << "Sort Done";
-/*
-    DoubleLinkNode * cur = llist.getHead();
-    int length;
-    while(cur->getNext() != nullptr){
-        length++;
-        cout << "While";
-        cur = cur->getNext();
-    }
-    if(binSearch(llist.getHead(),length,27))
-        cout << "True";
-    else
-        cout << "False";
-        */
-
-
-
-/*
-        //output to file
     file.close();
     //Opens file in output mode
-    ofstream fileO("output.txt");
+    ofstream fileO(fileName);
     DoubleLinkNode*ptr = llist.getHead();
     //Prints each node from list on a line into the file
-    while(ptr != nullptr){
-        fileO << ptr->getRoman();
-        for(int i = 0; i + ptr->getRoman().length() < 20;i++){
-            fileO << " ";
-        }
-        fileO << ptr->getArabic() << endl;
-        ptr = ptr->getNext();
-    }
-    */
 
-        file.close();
-    //Opens file in output mode
-    ofstream fileO("output.txt");
-    DoubleLinkNode*ptr = llist.getHead();
-    //Prints each node from list on a line into the file
     llist.print(fileO,llist.getHead());
 
     llist.deleteL(llist.getHead());
-
-    cout << "Deleted";
-    /*
-
-    while(ptr != nullptr){
-        fileO << ptr;
-        ptr = ptr->getNext();
-    }
-    */
 
     return 0;
 }

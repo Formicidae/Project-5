@@ -6,6 +6,9 @@
 
 
 void operator<<(ostream & out, BaseNode*ptr){
+    if(ptr->arabic == 0){
+        return;
+    }
 
     out << ptr->roman;
     for(int i = 0; i + ptr->roman.length() < 20;i++){

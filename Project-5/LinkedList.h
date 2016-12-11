@@ -1,6 +1,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "DoubleLinkNode.h"
+#include <iostream>
 
 
 class LinkedList
@@ -15,6 +16,10 @@ class LinkedList
         void print(ofstream & out,DoubleLinkNode*head);
         operator+=(DoubleLinkNode* n){
             if(!getHead()){
+                setHead(n);
+                setTail(n);
+            }
+            else if(head->getRoman() == "" && head->getArabic() == 0){
                 setHead(n);
                 setTail(n);
             }
